@@ -1,4 +1,9 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using VendasApi.Config;
+using VendasBusiness.Mapper;
 using VendasData.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +19,20 @@ builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.AddDbContext<VendasAppContext>(options =>
     options.UseSqlServer(Environment.GetEnvironmentVariable("DefaultConnection")));
+
+builder.Services.AddAutoMapper(typeof(MapperConfig));
+
+
+builder.Services.ResolveDependencies();
+
+// Desativando modelstate para fazer responses personalizados
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true; 
+});
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 var app = builder.Build();
 

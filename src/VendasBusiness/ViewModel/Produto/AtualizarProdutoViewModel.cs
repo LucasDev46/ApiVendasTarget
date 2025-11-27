@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendasBusiness.Notificacoes
+namespace VendasBusiness.ViewModel.Produto
 {
-    internal class Notificacoes
+    internal class AtualizarProdutoViewModel
     {
     }
 }

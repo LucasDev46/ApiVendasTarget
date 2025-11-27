@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using VendasBusiness.Notificacoes;
 
 namespace VendasApi.Controllers
 {
@@ -7,5 +8,8 @@ namespace VendasApi.Controllers
     [ApiController]
     public class VendaController : MainController
     {
+        public VendaController(INotificador notificador) : base(notificador)
+        {
+        }
     }
 }

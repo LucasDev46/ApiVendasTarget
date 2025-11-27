@@ -6,5 +6,6 @@ namespace VendasBusiness.Models
         public string Nome { get; set; }
         public decimal Comissao { get; set; }
         public ICollection<Venda> Vendas { get; set; } = new List<Venda>();
+        public bool Ativo { get; set; } = true;
     }
 }

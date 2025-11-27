@@ -8,7 +8,7 @@ namespace VendasBusiness.Models.Validator
     {
         public ProdutoValidator()
         {
-            RuleFor(p => p.Nome)
+            RuleFor(p => p.descricaoProduto)
                 .NotEmpty().WithMessage("O nome do produto é obrigatório.")
                 .MaximumLength(100).WithMessage("O nome do produto não pode exceder 100 caracteres.");
             RuleFor(p => p.Estoque)
