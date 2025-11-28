@@ -1,0 +1,48 @@
+📌 API de Vendas e Controle de Estoque
+
+Este projeto foi desenvolvido como solução para um desafio técnico envolvendo cálculo de comissões de vendedores e movimentação de estoque. A aplicação segue arquitetura em 3 camadas (API, Business e Data), utilizando boas práticas e tecnologias modernas.
+Como rodar o projeto:
+1. Clonar o repositório
+2. Abrir a solução
+3. Configurar o banco de dados (SQL server: não esquecer de configurar a ConnectionString)
+4. Executar a API
+5. Testar no Swagger
+
+🧰 Pré-requisitos
+
+.NET 8 instalado
+SQL Server rodando localmente
+
+Ferramenta de API client (Swagger, Postman)
+
+🚀 Tecnologias Utilizadas
+
+.NET 8 – Web API
+Entity Framework Core
+SQL Server
+Fluent API
+FluentValidation
+AutoMapper
+Arquitetura em 3 camadas (API → Business → Data)
+
+📍 Funcionalidades
+1. Cálculo de Comissão de Vendas
+
+Vendas < R$100,00 → sem comissão
+Vendas < R$500,00 → 1% de comissão
+Vendas ≥ R$500,00 → 5% de comissão
+
+A API retorna o total de comissão por vendedor.
+*/API/Vendedor/Obter-Comissao-Id{id}*
+
+2. Movimentações de Estoque
+*/API/Produto/Adicionar-Estoque*
+*/API/Produto/Retirar-Estoque*
+
+A aplicação permite registrar entradas e saídas de produtos com base no JSON inicial de estoque.
+
+Cada movimentação possui:
+
+Identificador único
+Descrição
+Estoque final do produto após o movimento
