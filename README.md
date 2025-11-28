@@ -13,8 +13,6 @@ Como rodar o projeto:
 .NET 8 instalado
 SQL Server rodando localmente
 
-Ferramenta de API client (Swagger, Postman)
-
 🚀 Tecnologias Utilizadas
 
 .NET 8 – Web API
@@ -27,11 +25,6 @@ Arquitetura em 3 camadas (API → Business → Data)
 
 📍 Funcionalidades
 1. Cálculo de Comissão de Vendas
-
-Vendas < R$100,00 → sem comissão
-Vendas < R$500,00 → 1% de comissão
-Vendas ≥ R$500,00 → 5% de comissão
-
 A API retorna o total de comissão por vendedor.
 */API/Vendedor/Obter-Comissao-Id{id}*
 
@@ -39,10 +32,3 @@ A API retorna o total de comissão por vendedor.
 */API/Produto/Adicionar-Estoque*
 */API/Produto/Retirar-Estoque*
 
-A aplicação permite registrar entradas e saídas de produtos com base no JSON inicial de estoque.
-
-Cada movimentação possui:
-
-Identificador único
-Descrição
-Estoque final do produto após o movimento
