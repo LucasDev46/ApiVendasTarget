@@ -16,6 +16,9 @@ namespace VendasApi.Config
             services.AddScoped<IVendedorRepository, VendedorRepository>();
             services.AddScoped<IVendedorService, VendedorService>();
 
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IProdutoService, ProdutoService>();
+
             return services;
 
         }

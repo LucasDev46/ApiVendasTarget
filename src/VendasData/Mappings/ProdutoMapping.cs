@@ -10,6 +10,10 @@ namespace VendasData.Mappings
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
+            builder.Property(p => p.Nome)
+                .IsRequired()
+                .HasColumnType("varchar(30)");
+
             builder.Property(p => p.descricaoProduto)
                 .IsRequired()
                 .HasColumnType("varchar(50)");
