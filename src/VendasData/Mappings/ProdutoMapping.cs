@@ -13,7 +13,8 @@ namespace VendasData.Mappings
             builder.Property(p => p.Nome)
                 .IsRequired()
                 .HasColumnType("varchar(30)");
-
+            builder.HasIndex(p => p.Nome)
+                .IsUnique();
             builder.Property(p => p.descricaoProduto)
                 .IsRequired()
                 .HasColumnType("varchar(50)");

@@ -9,5 +9,6 @@ namespace VendasBusiness.Models
         public long ProdutoId { get; set; }
         public Produto Produto { get; set; }
         public int Quantidade { get; set; }
+        public decimal ValorTotal { get; set; }
     }
 }

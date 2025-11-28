@@ -17,5 +17,10 @@ namespace VendasData.Repository
             return await _dbSet.Include(v => v.Vendas)
                                .ToListAsync();
         }
+        public async Task<Vendedor> ObterDadosPorId(long id)
+        {
+            return await _dbSet.Include(v => v.Vendas)
+                               .FirstOrDefaultAsync(v => v.Id == id);
+        }
     }
 }

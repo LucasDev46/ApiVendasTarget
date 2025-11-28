@@ -16,14 +16,14 @@ namespace VendasApi.Controllers
             _vendedorService = vendedorService;
         }
 
-        [HttpGet]
+        [HttpGet("Obter-Todos")]
         public async Task<ActionResult<IEnumerable<DadosVendedorViewModel>>> ObterTodosVendedor()
         {
             var result = await _vendedorService.ObterTodos();
             return CustomResponse(result);
         }
 
-        [HttpGet("{id:long}")]
+        [HttpGet("Obter-Comissao-Id/{id:long}")]
         public async Task<ActionResult<IEnumerable<DadosVendedorViewModel>>> ObterVendedorPorId(long id)
         {
             var result = await _vendedorService.ObterPorId(id);
@@ -31,7 +31,7 @@ namespace VendasApi.Controllers
             return CustomResponse(result);
         }
 
-        [HttpPost]
+        [HttpPost("Criar-Vendedor")]
         public async Task<ActionResult<IEnumerable<DadosVendedorViewModel>>> CriarVendedor(CriarVendedorViewModel vendedor)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
@@ -42,7 +42,7 @@ namespace VendasApi.Controllers
             return CustomResponse(result, 201);
         }
 
-        [HttpPut]
+        [HttpPut("Atualizar-Vendedor/{id:long}")]
         public async Task<ActionResult<IEnumerable<DadosVendedorViewModel>>> AtualizarVendedor(AtualizarVendedorViewModel vendedor)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
@@ -53,7 +53,7 @@ namespace VendasApi.Controllers
             return CustomResponse(result);
         }
 
-        [HttpPatch("{id:long}")]
+        [HttpPatch("Inativar-Vendedor{id:long}")]
         public async Task<ActionResult<IEnumerable<DadosVendedorViewModel>>> InativarVendedor(long id)
         {
             var vendedor = await _vendedorService.Inativar(id);

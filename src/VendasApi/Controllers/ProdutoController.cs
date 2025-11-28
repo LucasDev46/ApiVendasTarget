@@ -16,23 +16,23 @@ namespace VendasApi.Controllers
             _produtoService = produtoService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> ObterTodosVendedor()
+        [HttpGet("Obter-Todos")]
+        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> ObterTodosProduto()
         {
             var result = await _produtoService.ObterTodos();
             return CustomResponse(result);
         }
 
-        [HttpGet("{id:long}")]
-        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> ObterVendedorPorId(long id)
+        [HttpGet("Obter-Por-Id/{id:long}")]
+        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> ObterProdutoPorId(long id)
         {
             var result = await _produtoService.ObterPorId(id);
             if (result == null) return CustomResponse();
             return CustomResponse(result);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> CriarVendedor(CriarProdutoViewModel produto)
+        [HttpPost("Criar-Produto")]
+        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> CriarProduto(CriarProdutoViewModel produto)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
@@ -41,9 +41,29 @@ namespace VendasApi.Controllers
 
             return CustomResponse(result, 201);
         }
+        [HttpPut("Adicionar-Estoque")]
+        public async Task<ActionResult<DadosProdutoViewModel>> AdicionarEstoque(AtualizarEstoqueViewModel produto)
+        {
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+            var result = await _produtoService.AdicionarEstoque(produto);
+           
+            if (result is null) return CustomResponse();
 
-        [HttpPut]
-        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> AtualizarVendedor(AtualizarProdutoViewModel produto)
+            return CustomResponse(result);
+        }
+        [HttpPut("Retirar-Estoque")]
+        public async Task<ActionResult<DadosProdutoViewModel>> RetirarEstoque(AtualizarEstoqueViewModel produto)
+        {
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+            var result = await _produtoService.RetirarEstoque(produto);
+
+            if (result is null) return CustomResponse();
+
+            return CustomResponse(result);
+        }
+
+        [HttpPut("Atualizar-Produto/{id:long}")]
+        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> AtualizarProduto(AtualizarProdutoViewModel produto)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
@@ -53,8 +73,8 @@ namespace VendasApi.Controllers
             return CustomResponse(result);
         }
 
-        [HttpPatch("{id:long}")]
-        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> InativarVendedor(long id)
+        [HttpPatch("Inativar-Produto/{id:long}")]
+        public async Task<ActionResult<IEnumerable<DadosProdutoViewModel>>> InativarProduto(long id)
         {
             var vendedor = await _produtoService.Inativar(id);
 

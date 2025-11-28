@@ -63,9 +63,48 @@ namespace VendasBusiness.Services
             return produtoDto;
         }
 
+        public async Task<DadosProdutoViewModel> AdicionarEstoque(AtualizarEstoqueViewModel produto)
+        {
+            if (ExecutarValidacao(new AtualizarEstoqueValidator(), produto) == false) return null;
+            var entity = await VerificarProduto(produto.CodigoProduto);
+            if (entity == null)
+            {
+                Notificar("Produto Não encontrado!");
+                return null;
+            }
+            entity.Estoque += produto.Estoque;
+            entity.descricaoProduto = produto.DescricaoProduto;
+            _produtoRepository.Update(entity);
+            await _produtoRepository.Commit();
+            var dto = _mapper.Map<DadosProdutoViewModel>(entity);
+            return dto;
+        }
+
+        public async Task<DadosProdutoViewModel> RetirarEstoque(AtualizarEstoqueViewModel produto)
+        {
+            if (ExecutarValidacao(new AtualizarEstoqueValidator(), produto) == false) return null;
+            var entity = await VerificarProduto(produto.CodigoProduto);
+            if (entity == null)
+            {
+                Notificar("Produto Não encontrado!");
+                return null;
+            }
+            entity.Estoque -= produto.Estoque;
+            entity.descricaoProduto = produto.DescricaoProduto;
+            _produtoRepository.Update(entity);
+            await _produtoRepository.Commit();
+            var dto = _mapper.Map<DadosProdutoViewModel>(entity);
+            return dto;
+        }
+
         public async Task<DadosProdutoViewModel> Criar(CriarProdutoViewModel produto)
         {
             if (ExecutarValidacao(new CriarProdutoViewModelValidator(), produto) == false) return null;
+
+            if(await _produtoRepository.SelectByQuery(p => p.Nome == produto.Nome) != null){
+                Notificar("Produto com o mesmo nome ja cadastrado!");
+                return null;
+            }
             var entity = _mapper.Map<Produto>(produto);
 
             _produtoRepository.Insert(entity);
@@ -87,6 +126,14 @@ namespace VendasBusiness.Services
             _produtoRepository.Update(entity);
             await _produtoRepository.Commit();
             return true;
+        }
+
+        private async Task<Produto> VerificarProduto(long id)
+        {
+            var entity = await _produtoRepository.SelectByQuery(p => p.Id == id);
+            if (entity == null && entity.Id != id) return null;
+            
+            return entity;
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿
-
 using VendasBusiness.ViewModel.Produto;
-using VendasBusiness.ViewModel.Vendedor;
 
 namespace VendasBusiness.Interface.Services
 {
@@ -11,6 +9,8 @@ namespace VendasBusiness.Interface.Services
         Task<DadosProdutoViewModel> ObterPorId(long id);
         Task<DadosProdutoViewModel> Criar(CriarProdutoViewModel produto);
         Task<DadosProdutoViewModel> Atualizar(AtualizarProdutoViewModel produto);
+        Task<DadosProdutoViewModel> AdicionarEstoque(AtualizarEstoqueViewModel produto);
+        Task<DadosProdutoViewModel> RetirarEstoque(AtualizarEstoqueViewModel produto);
         Task<bool> Inativar(long id);
     }
 }

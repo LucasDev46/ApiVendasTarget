@@ -32,15 +32,15 @@ namespace VendasBusiness.Services
             return vendedorDto;
         }
 
-        public async Task<DadosVendedorViewModel> ObterPorId(long id)
+        public async Task<ComissaoVendedorViewModel> ObterPorId(long id)
         {
-            var result = await _vendedorRepository.SelectByQuery(p => p.Id == id);
+            var result = await _vendedorRepository.ObterDadosPorId(id);
             if(result is null)
             {
                 Notificar("Vendedor não encontrado!");
                 return null;
             }
-            var vendedorDto = _mapper.Map<DadosVendedorViewModel>(result);
+            var vendedorDto = _mapper.Map<ComissaoVendedorViewModel>(result);
             return vendedorDto;
         }
 
