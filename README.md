@@ -1,4 +1,4 @@
-📌 API de Vendas e Controle de Estoque
+📌 API de Vendas e Controle de Estoque<br>
 Este projeto foi desenvolvido como solução para um desafio técnico envolvendo cálculo de comissões de vendedores e movimentação de estoque. A aplicação segue arquitetura em 3 camadas (API, Business e Data), utilizando boas práticas e tecnologias modernas.
 Como rodar o projeto:
 1. Clonar o repositório
