@@ -8,11 +8,6 @@ Como rodar o projeto:
 4. Executar a API
 5. Testar no Swagger
 
-🧰 Pré-requisitos
-
-.NET 8 instalado
-SQL Server rodando localmente
-
 🚀 Tecnologias Utilizadas
 
 .NET 8 – Web API
